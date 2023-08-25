@@ -1,5 +1,6 @@
 require "sinatra"
 require "sinatra/reloader"
+require "sinatra/content_for"
 require "tilt/erubis"
 
 configure do
@@ -48,6 +49,12 @@ post "/lists" do
     session[:success] = 'The list has been created.'
     redirect "/lists"
   end
+end
+
+get '/lists/:id' do 
+  id = params[:id].to_i
+  @list = session[:lists][id]
+ erb :list, layout: :layout
 end
 
 set :session_secret, SecureRandom.hex(32)
