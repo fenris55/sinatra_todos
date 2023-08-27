@@ -9,15 +9,15 @@ configure do
   set :erb, :escape_html => true
 end
 
+def load_list(index)
+  list = session[:lists][index] if index && session[:lists][index]
+  return list if list 
+
+  session[:error] = 'The specified list was not found.'
+  redirect '/lists'
+end
+
 helpers do
-  def load_list(index)
-    list = session[:lists][index] if index && session[:lists][index]
-    return list if list 
-
-    session[:error] = 'The specified list was not found.'
-    redirect '/lists'
-  end
-
   def list_complete?(list)
     list[:todos].size.positive? && remaining_todos(list).zero?
   end
