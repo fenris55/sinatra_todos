@@ -6,7 +6,6 @@ $(function() {
 
     var ok = confirm("Are you sure? This cannot be undone!");
     if (ok) {
-      //this.submit();
      
       var form = $(this);
 
@@ -15,11 +14,11 @@ $(function() {
         method: form.attr("method")
       });
 
-      request.done(function(data, testStatus,jqXHR) {
+      request.done(function(data, testStatus, jqXHR) {
         if (jqXHRstatus === 204) {
         form.parent("li").remove();
         } elsif (jqXHR.status === 200) {
-          document.location = data
+          document.location = data;
         }
       });
     }
