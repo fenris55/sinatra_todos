@@ -18,7 +18,6 @@ def load_list(id)
 end
 
 
-
 helpers do
   def list_complete?(list)
     list[:todos].size.positive? && remaining_todos(list).zero?
